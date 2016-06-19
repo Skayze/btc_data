@@ -22,8 +22,10 @@ body {
 <body>
 <script type="text/javascript" src="d3/d3.v3.js"></script>
 <script>
-var todayDate = d3.time.format("%YYYY-%MM-%DD");
-alert(todayDate);
+var todayDatefull = new Date();
+var todayDate = d3.time.format("%Y-%m-%d");
+var filetoday = todayDate(todayDatefull);
+
 
 var margin = {top: 20, right: 20, bottom: 30, left: 40},
     width = 960 - margin.left - margin.right,
@@ -51,7 +53,7 @@ var svg = d3.select("body").append("svg")
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-d3.csv("data.csv", function(error, data) {
+d3.csv(filetoday+".csv", function(error, data) {
   if (error) throw error;
 
   data.forEach(function(d) {
